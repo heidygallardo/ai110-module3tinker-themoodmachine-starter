@@ -13,6 +13,8 @@ from typing import List, Dict, Tuple, Optional
 
 from dataset import POSITIVE_WORDS, NEGATIVE_WORDS
 
+import string
+
 
 class MoodAnalyzer:
     """
@@ -55,7 +57,15 @@ class MoodAnalyzer:
         cleaned = text.strip().lower()
         tokens = cleaned.split()
 
-        return tokens
+        clean_tokens = []
+
+        # remove punctuations
+        for token in tokens:
+          stripped = token.strip(string.punctuation)
+          if stripped:
+              clean_tokens.append(stripped)
+
+        return clean_tokens
 
     # ---------------------------------------------------------------------
     # Scoring logic
@@ -83,7 +93,30 @@ class MoodAnalyzer:
         #
         # Hint: if you implement negation, you may want to look at pairs of tokens,
         # like ("not", "happy") or ("never", "fun").
-        pass
+        
+        # Words that flip the sentiment of the word that follows them.
+        NEGATORS = {"not", "never", "no", "don't", "didn't", "can't", "won't", "isn't"}
+
+        score = 0
+        tokens = self.preprocess(text)
+
+        negate = False
+        for token in tokens:
+            # A negator turns on negation for the upcoming sentiment word.
+            if token in NEGATORS:
+                negate = True
+                continue
+
+            if token in self.positive_words:
+                score += -1 if negate else 1
+                negate = False          # negation consumed
+            elif token in self.negative_words:
+                score += 1 if negate else -1
+                negate = False          # negation consumed
+            # neutral word: leave `negate` on so it can reach across filler words
+
+        return score
+
 
     # ---------------------------------------------------------------------
     # Label prediction
@@ -110,7 +143,20 @@ class MoodAnalyzer:
         #   2. Return "positive" if the score is above 0.
         #   3. Return "negative" if the score is below 0.
         #   4. Return "neutral" otherwise.
-        pass
+
+
+        # step 1 
+        score = self.score_text(text)
+
+        # step 2 
+        if score > 0:
+            return "positive"
+        
+        elif score < 0:
+            return "negative"
+        
+        else:
+            return "neutral"
 
     # ---------------------------------------------------------------------
     # Explanations (optional but recommended)

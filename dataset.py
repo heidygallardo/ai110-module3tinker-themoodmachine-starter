@@ -23,6 +23,7 @@ POSITIVE_WORDS = [
     "chill",
     "relaxed",
     "amazing",
+    "fire"
 ]
 
 NEGATIVE_WORDS = [
@@ -50,6 +51,20 @@ SAMPLE_POSTS = [
     "This is fine",
     "So excited for the weekend",
     "I am not happy about this",
+    "lowkey obsessed w this playlist no cap 🔥",
+    "got the job 😭😭🙌",
+    "oh fantastic, my alarm didn't go off. love that for me 🙃",
+    "wow another software update that breaks everything. amazing 🙄",
+    "it is what it is",
+    "chillin, nothing crazy 🤷",
+    "ugh Mondays, here we go again 💀",
+    "passed my exam lets gooo 🎉",
+    "oh wonderful, traffic for an hour. just what I needed 🙃",
+    "not gonna lie this kinda slaps",
+    "happy for them but also kinda jealous ngl",
+    "meeting got moved again, whatever",
+    "so proud of myself but exhausted lol",
+    "the wifi is down again 😤",
 ]
 
 # Human labels for each post above.
@@ -65,6 +80,20 @@ TRUE_LABELS = [
     "neutral",   # "This is fine"
     "positive",  # "So excited for the weekend"
     "negative",  # "I am not happy about this"
+    "positive",  # "lowkey obsessed w this playlist no cap 🔥"
+    "positive",  # "got the job 😭😭🙌"
+    "negative",  # "oh fantastic, my alarm didn't go off. love that for me 🙃" (sarcasm)
+    "negative",  # "wow another software update that breaks everything. amazing 🙄" (sarcasm)
+    "neutral",   # "it is what it is"
+    "neutral",   # "chillin, nothing crazy 🤷"
+    "negative",  # "ugh Mondays, here we go again 💀"
+    "positive",  # "passed my exam lets gooo 🎉"
+    "negative",  # "oh wonderful, traffic for an hour. just what I needed 🙃" (sarcasm)
+    "positive",  # "not gonna lie this kinda slaps"
+    "mixed",     # "happy for them but also kinda jealous ngl"
+    "neutral",   # "meeting got moved again, whatever"
+    "mixed",     # "so proud of myself but exhausted lol"
+    "negative",  # "the wifi is down again 😤"
 ]
 
 # TODO: Add 5-10 more posts and labels.
